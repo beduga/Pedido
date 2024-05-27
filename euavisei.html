@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedido besta</title>
+    <style>
+        body{
+            background-color: rgb(248, 51, 51);
+        
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background: #000; /* Cor de fundo da página */
+    color: #fff; /* Cor das flocos de neve */
+    font-family: 'Arial', sans-serif;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.snowflake {
+    position: absolute;
+    top: -10px;
+    color: #fff;
+    font-size: 1em;
+    will-change: transform;
+    user-select: none;
+    pointer-events: none;
+    animation: fall linear infinite;
+}
+
+@keyframes fall {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+.snowflake:nth-child(1) { animation-duration: 10s; animation-delay: 0s; left: 10%; }
+.snowflake:nth-child(2) { animation-duration: 12s; animation-delay: 2s; left: 20%; }
+.snowflake:nth-child(3) { animation-duration: 14s; animation-delay: 4s; left: 30%; }
+.snowflake:nth-child(4) { animation-duration: 16s; animation-delay: 6s; left: 40%; }
+.snowflake:nth-child(5) { animation-duration: 18s; animation-delay: 8s; left: 50%; }
+.snowflake:nth-child(6) { animation-duration: 10s; animation-delay: 10s; left: 60%; }
+.snowflake:nth-child(7) { animation-duration: 12s; animation-delay: 12s; left: 70%; }
+.snowflake:nth-child(8) { animation-duration: 14s; animation-delay: 14s; left: 80%; }
+.snowflake:nth-child(9) { animation-duration: 16s; animation-delay: 16s; left: 90%; }
+.snowflake:nth-child(10) { animation-duration: 18s; animation-delay: 18s; left: 100%; }
+        
+        .painel{
+            margin: auto;
+            background-color: rgb(245, 2, 2);
+            width: 600px;
+            height: 500px;
+            border-radius: 20px;
+            text-align: center;
+            padding-top: 50px;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+        #claro{
+            width: 60px;
+            height: 50px;
+            background-color: red;
+            border:2px solid white;
+            border-radius: 10px;
+            color: white;
+            margin-left: -60px;
+
+
+
+
+        }
+        #nunca{
+            position: absolute;
+            height: 50px;
+            width: 60px;
+            background-color: red;
+            border:2px solid white;
+            border-radius: 10px;
+            color: white;
+            margin-left: 10px;
+
+
+
+        }
+        
+
+    </style>
+</head>
+<body>
+    <div class="painel">
+    
+    <h1>Gostaria de me fazer companhia em uma atividade a dois?</h1>
+    
+    <img src="https://media.tenor.com/z78dSYcmmm4AAAAM/cute-emoji-blushing.gif"alt="">
+    
+    <h2>Pense bem antes de escolher!</h2>
+    
+    <a href="https://www.youtube.com/watch?v=0mJMW2CzTiA"><button id="claro"> Claro! </button></a>
+    <button onmouseover="fuja()" id="nunca"> Nunca! </button>
+
+    <div class="snowflake" aria-hidden="true">❄</div>
+    <div class="snowflake" aria-hidden="true">❄</div>
+    <div class="snowflake" aria-hidden="true">❄</div>
+    <div class="snowflake" aria-hidden="true">❄</div>
+    <div class="snowflake" aria-hidden="true">❄</div>
+    <div class="snowflake" aria-hidden="true">❄</div>
+    <div class="snowflake" aria-hidden="true">❄</div>
+    <div class="snowflake" aria-hidden="true">❄</div>
+    <div class="snowflake" aria-hidden="true">❄</div>
+    <div class="snowflake" aria-hidden="true">❄</div>
+    <script src="script.js"></script>
+
+
+
+
+
+</div>
+<script>
+   function fuja(){
+            var botaoNao = document.getElementById("nunca")
+
+            var larguraJanela = window.innerWidth;
+            var alturaJanela = window.innerHeight;
+
+            var maxX = larguraJanela - botaoNao.offsetWidth;
+            var maxY = alturaJanela - botaoNao.offsetHeight;
+
+            var aleatorioX = Math.floor(Math.random() * maxX);
+            var aleatorioY = Math.floor(Math.random() * maxY);
+
+            botaoNao.style.left = aleatorioX + "px";
+            botaoNao.style.top = aleatorioY + "px";
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+    const snowflakes = document.querySelectorAll('.snowflake');
+    
+    function randomizeSnowflake(snowflake) {
+        const randomSize = Math.random() * 1.5 + 0.5;
+        const randomLeft = Math.random() * 100;
+        const randomDuration = Math.random() * 5 + 5;
+        const randomDelay = Math.random() * 10;
+        
+        snowflake.style.fontSize = `${randomSize}em`;
+        snowflake.style.left = `${randomLeft}%`;
+        snowflake.style.animationDuration = `${randomDuration}s`;
+        snowflake.style.animationDelay = `${randomDelay}s`;
+    }
+    
+    snowflakes.forEach(snowflake => {
+        randomizeSnowflake(snowflake);
+        
+        snowflake.addEventListener('animationiteration', () => {
+            randomizeSnowflake(snowflake);
+        });
+    });
+});
+</script>
+</body>
+</html>
